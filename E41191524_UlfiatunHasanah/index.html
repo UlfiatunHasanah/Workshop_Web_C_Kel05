@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<head>
+    <title>Form Kasir</title>
+</head>
+<body>
+    <center>
+        <fieldset>
+            <form action="target.html" method="POST">
+                <h1>FORM DATA KASIR</h1>
+                <table border="1" cellpadding="10">
+                    <tr>
+                        <td>ID KASIR</td>
+                        <td>:</td>
+                        <td><input type="text" name="id" placeholder="Masukkan ID Anda"</td>
+                    </tr>
+                    <tr>
+                        <td>NAMA KASIR</td>
+                        <td>:</td>
+                        <td><input type="text" name="nama" placeholder="Masukkan Nama Anda"</td>
+                    </tr>
+                    <tr>
+                        <td>ALAMAT KASIR</td>
+                        <td>:</td>
+                        <td><select name="alamat">
+                            <option value="JEMBER">JEMBER</option>
+                            <option value="PROBOLINGGO">PROBOLINGGO</option>
+                            <option value="PASURUAN">PASURUAN</option>
+                        </select></td>
+                    </tr>
+                    <tr>
+                        <td>TELEPON KASIR</td>
+                        <td>:</td>
+                        <td><input type="text" name="telepon" placeholder="Masukkan Nomer Telepon Anda"></td>
+                    </tr>
+                </tr>
+                <tr>
+                    <td>STATUS</td>
+                    <td>:</td>
+                    <td><input type="radio" name="status" value="pria">PRIA</td>
+                    <td><input type="radio" name="status" value="wanita">WANITA</td>
+                </tr>
+                <tr>
+                    <td>USERNAME</td>
+                    <td>:</td>
+                    <td><input type="text" name="username" placeholder="Masukkan Username Anda"></td>
+                </tr>
+                <tr>
+                    <td>PASSWORD</td>
+                    <td>:</td>
+                    <td><input type="password" name="password" placeholder="Masukkan Password Anda"></td>
+                </tr>
+                <tr>
+                    <td><input type="submit" name="submit" value="KIRIM"></td>
+                </tr>
+                </table>
+            </form>
+        </fieldset>
+    </center>
+</body>
+</html>
