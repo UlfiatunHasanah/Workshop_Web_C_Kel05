@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Belajar Atribut Form pada html</title>
+</head>
+<body>
+<form>
+	Nama Depan :<input type="text" value="nama"><br/> <!--(Value) : Memberikan nilai awal-->
+    Nama Belakang : <input type="text"> <br/>
+    
+    Nama Depan :<input type="text" value="nama" readonly><br/> <!--(readonly) : Value tidak bisa dirubah-->
+    Nama Belakang : <input type="text"> <br/>
+    
+    Nama Depan :<input type="text" value="nama" disabled><br/> <!--(Disables) : Menonaktifkan inputan-->
+    Nama Belakang : <input type="text"> <br/>
+    
+    Nama Depan :<input type="text" value="nama" size="50"><br/> <!--(Size) : Mengatur lebar kotak inputan-->
+    Nama Belakang : <input type="text"> <br/>
+    
+    Nama Depan :<input type="text" value="nama" maxlength="10"><br/> <!--(maxlength) : Menentukan jumlah inputan yang dibatasi-->
+    Nama Belakang : <input type="text"> <br/>
+    
+    <input list="browser" name="internet"> <!--(input list) : menampilkan list pada form inputan-->
+	<datalist id="browser"> <!--(datalist) : Mempresentasikan daftar opsi tetapi tidak ditampilkan di browser-->
+	<option value="chrome">
+	<option value="mozilla">
+	<option value="opera">
+    </datalist> <br/>
+    
+    <input type="date" name="day" max="1979-12-31"> <!--(max dan min) : Menentukan nilai maximum dan minimum-->
+    <input type="date" name="day" min="2000-01-02"> <br/>
+    
+    <input type="text" name="nama" placeholder="masukkan nama"> <!--(Placeholder) : Mengganti label field-->
+
+</form>
+
+</body>
+</html>
