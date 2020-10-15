@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>belajar membuat tabel di html</title>
+</head>
+<body>
+<table border="1">
+	<tr>
+		<th>No</th>
+		<th>Nama</th>
+		<th>Alamat</th>
+	</tr>
+	<tr>
+		<td>1</td>
+		<td>Satsa</td>
+		<td>Jember</td>
+	</tr>
+	<tr>
+		<td>2</td>
+		<td>Ratri</td>
+		<td>Jakarta</td>
+	</tr>
+	
+</table>
+</body>
+</html>
