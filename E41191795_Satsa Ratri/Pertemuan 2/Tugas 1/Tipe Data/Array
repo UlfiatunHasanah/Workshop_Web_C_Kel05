@@ -1,0 +1,4 @@
+<?php
+$anggota = array("Andi","Budi","Joni");
+//variabel anggota di atas adalah variabel yang bertipe data array karena memiliki banyak isi pada.
+?>
