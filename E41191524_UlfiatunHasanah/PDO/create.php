@@ -5,7 +5,7 @@
   $nama = htmlentities($_POST['nama']);
         $alamat = htmlentities($_POST['alamat']);
         $kelas = htmlentities($_POST['kelas']);
-        $query = $db->prepare("INSERT INTO `tbl_siswa`(`nis`,`nama`, `alamat`, `kelas`)
+        $query = $db->prepare("INSERT INTO `tb_siswa`(`nis`,`nama`, `alamat`, `kelas`)
         VALUES (:nis,:nama,:alamat,:kelas)");
   $query->bindParam(":nis", $nis);
         $query->bindParam(":nama", $nama);
