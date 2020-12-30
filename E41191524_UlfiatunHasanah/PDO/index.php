@@ -8,10 +8,10 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>CRUD PDO Javanet Media </title>
+<title>CRUD PDO</title>
 </head>
 <body bgcolor="#CCCCCC">
-<h2><strong><p align="center">Data Siswa JavaNet Media</p></strong></h2>
+<h2><strong><p align="center">Data Siswa</p></strong></h2>
 <table width="807" border="1" cellpadding="0" cellspacing="0" align="center">
   <tr>
     <td width="115" height="30" align="center" valign="middle" bgcolor="#00FFFF">NIS</td>
