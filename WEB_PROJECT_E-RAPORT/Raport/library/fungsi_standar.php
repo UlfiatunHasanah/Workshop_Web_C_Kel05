@@ -57,10 +57,10 @@ function tanggal(){
 function penambahan($teks1, $teks2)
 {
 	$id=0;
-	$query=mysql_query($teks1);
-	$qry=mysql_query($teks2);
-	$inc=mysql_fetch_array($qry);
-	$nrow=mysql_num_rows($query);
+	$query=mysqli_query($teks1);
+	$qry=mysqli_query($teks2);
+	$inc=mysqli_fetch_array($qry);
+	$nrow=mysqli_num_rows($query);
 
 	if ($nrow==0){
 		$id=1;	
@@ -116,15 +116,15 @@ else
 
 function ambil_data($DML)
 {
-	$query=mysql_query($DML);
-	$dataArray=mysql_fetch_array($query);
+	$query=mysqli_query($DML);
+	$dataArray=mysqli_fetch_array($query);
 	return $dataArray;
 }
 
 function pencarian($tabel,$field,$cari)
 {
 	$sql="SELECT * FROM $tabel WHERE $field LIKE '%$cari%'";
-	$query=mysql_query($sql);
+	$query=mysqli_query($sql);
 	return $query;
 }
 
@@ -219,10 +219,10 @@ function pecah_tgl($kalender)
 			echo "<td colspan=2>Menu</td>";
 		}
 		echo "</tr>";
-		//proses ke mysql
+		//proses ke mysqli
 		$no=1;
-		$query=mysql_query($sql);
-		while($data=mysql_fetch_array($query))
+		$query=mysqli_query($sql);
+		while($data=mysqli_fetch_array($query))
 		{
 			//baris data atau record pada tabel di basis data
 			echo "<tr>";
