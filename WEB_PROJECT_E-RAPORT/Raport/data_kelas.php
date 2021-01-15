@@ -33,9 +33,9 @@ require_once "library/fungsi_standar.php";
 							<tr>
 							<?php
 		$qtmpil_kelas="select * from kelas order by inc asc";						
-		$qp_kls=mysql_query($qtmpil_kelas);
+		$qp_kls=mysqli_query($qtmpil_kelas);
 		$no=1;
-		while($row1=mysql_fetch_array($qp_kls)){ ?>
+		while($row1=mysqli_fetch_array($qp_kls)){ ?>
 		
 		
 		<td><?php echo "$no"; ?></td>
