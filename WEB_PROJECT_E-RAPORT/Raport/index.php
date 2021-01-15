@@ -176,6 +176,6 @@ if (isset($_SESSION['level']) && isset($_SESSION['username']))
 }
 else
 {
-	lompat_ke("form_login.php");
+	lompat_ke("form_login.php"); 
 }
 ?>
