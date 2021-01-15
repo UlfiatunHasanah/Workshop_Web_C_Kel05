@@ -149,11 +149,11 @@ require_once "library/fungsi_standar.php";
 							
 							
 							<select name='nmjurusan' class='span6' typeahead'id='selectError' data-rel='chosen' value='".$data[jurusan_nama]."'>";
-					$tampil=mysql_query("SELECT * FROM jurusan ORDER BY jurusan_nama");
+					$tampil=mysqli_query("SELECT * FROM jurusan ORDER BY jurusan_nama");
 						if ($data[jurusan_id]==0){
 					echo "<option value=0 selected>- Pilih Jurusan-</option>";}   
 
-					while($w=mysql_fetch_array($tampil)){
+					while($w=mysqli_fetch_array($tampil)){
 					if ($data[jurusan_id]==$w[jurusan_id]){
               echo "<option value=$w[jurusan_nama] selected>$w[jurusan_nama]</option>";}
             else{
@@ -250,8 +250,8 @@ require_once "library/fungsi_standar.php";
     			
                   <?php
 						$jurusan="SELECT * FROM kelas ORDER BY kelas_id ASC";
-						$qjurusan=mysql_query($jurusan);
-						while($djurusan=mysql_fetch_array($qjurusan))
+						$qjurusan=mysqli_query($jurusan);
+						while($djurusan=mysqli_fetch_array($qjurusan))
 						{
 							echo "<option value='$djurusan[kelas_id]'>$djurusan[kelas_id]</option>";
 						}
@@ -348,8 +348,8 @@ require_once "library/fungsi_standar.php";
     			
                   <?php
 						$kelas="SELECT * FROM kelas ORDER BY kelas_id ASC";
-						$qkelas=mysql_query($kelas);
-						while($dkelas=mysql_fetch_array($qkelas))
+						$qkelas=mysqli_query($kelas);
+						while($dkelas=mysqli_fetch_array($qkelas))
 						{
 							echo "<option value='$dkelas[kelas_id]'>$dkelas[kelas_id]</option>";
 						}
