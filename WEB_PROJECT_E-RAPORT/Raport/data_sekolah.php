@@ -26,9 +26,9 @@
 							<tr>
 							<?php
 		$qtmpil_sup="select * from sekolah order by inc asc";					
-		$qp_sup=mysql_query($qtmpil_sup);
+		$qp_sup=mysqli_query($qtmpil_sup);
 		
-		while($row2=mysql_fetch_array($qp_sup)){ ?>
+		while($row2=mysqli_fetch_array($qp_sup)){ ?>
 		
 		
 		  
