@@ -19,8 +19,8 @@ require_once "library/fungsi_standar.php";
 	<input type=hidden name=proses id=proses value=$_GET[kode] />";
 	if($_GET['kode']=="pelajaran_update"){
 		$pesan="SELECT * FROM pelajaran WHERE inc='$_GET[id]'";
-		$query=mysql_query($pesan);
-		$data=mysql_fetch_array($query);
+		$query=mysqli_query($pesan);
+		$data=mysqli_fetch_array($query);
 		
 		
 		
@@ -75,8 +75,8 @@ require_once "library/fungsi_standar.php";
 
 elseif($_GET['kode']=="jurusan_update"){
 		$pesan="SELECT * FROM jurusan WHERE inc='$_GET[id]'";
-		$query=mysql_query($pesan);
-		$data=mysql_fetch_array($query);
+		$query=mysqli_query($pesan);
+		$data=mysqli_fetch_array($query);
 		
 		
 		
@@ -126,8 +126,8 @@ elseif($_GET['kode']=="jurusan_update"){
 
 	elseif($_GET['kode']=="kelas_update"){
 		$pesan="SELECT * FROM kelas WHERE inc='$_GET[id]'";
-		$query=mysql_query($pesan);
-		$data=mysql_fetch_array($query);
+		$query=mysqli_query($pesan);
+		$data=mysqli_fetch_array($query);
 		
 		
 		
@@ -166,11 +166,11 @@ elseif($_GET['kode']=="jurusan_update"){
 							
 							
 							<select name='nmjurusan' class='span6' typeahead'id='selectError' data-rel='chosen' value='".$data[jurusan_nama]."'>";
-					$tampil=mysql_query("SELECT * FROM jurusan ORDER BY jurusan_nama");
+					$tampil=mysqli_query("SELECT * FROM jurusan ORDER BY jurusan_nama");
 						if ($data[jurusan_id]==0){
 					echo "<option value=0 selected>- Pilih Jurusan-</option>";}   
 
-					while($w=mysql_fetch_array($tampil)){
+					while($w=mysqli_fetch_array($tampil)){
 					if ($data[jurusan_id]==$w[jurusan_id]){
               echo "<option value=$w[jurusan_nama] selected>$w[jurusan_nama]</option>";}
             else{
@@ -197,8 +197,8 @@ elseif($_GET['kode']=="jurusan_update"){
 	}
 	elseif($_GET['kode']=="siswa_update"){
 		$pesan="SELECT * FROM siswa WHERE siswa_id='$_GET[id]'";
-		$query=mysql_query($pesan);
-		$data=mysql_fetch_array($query);
+		$query=mysqli_query($pesan);
+		$data=mysqli_fetch_array($query);
 	echo "<div class='row-fluid sortable'>
 				<div class='box span12'>
 					<div class='box-header' data-original-title>
@@ -260,11 +260,11 @@ elseif($_GET['kode']=="jurusan_update"){
 							<label class='control-label' for='typeahead'>Kelas ID </label>
 							<div class='controls'>
 							<select name='jurusan' class='span6' typeahead'id='selectError' data-rel='chosen'>";
-					$tampil=mysql_query("SELECT * FROM kelas ORDER BY kelas_id");
+					$tampil=mysqli_query("SELECT * FROM kelas ORDER BY kelas_id");
 						if ($data[kelas_id]==0){
 					echo "<option value=0 selected>- Pilih Kelas -</option>";}   
 
-					while($w=mysql_fetch_array($tampil)){
+					while($w=mysqli_fetch_array($tampil)){
 					if ($data[kelas_id]==$w[kelas_id]){
               echo "<option value=$w[kelas_id] selected>$w[kelas_id]</option>";}
             else{
@@ -292,8 +292,8 @@ elseif($_GET['kode']=="jurusan_update"){
 	}
 	elseif($_GET['kode']=="walikelas_update"){
 		$pesan="SELECT * FROM wali_kelas WHERE inc='$_GET[id]'";
-		$query=mysql_query($pesan);
-		$data=mysql_fetch_array($query);
+		$query=mysqli_query($pesan);
+		$data=mysqli_fetch_array($query);
 	echo "<div class='row-fluid sortable'>
 				<div class='box span12'>
 					<div class='box-header' data-original-title>
@@ -355,11 +355,11 @@ elseif($_GET['kode']=="jurusan_update"){
 							<label class='control-label' for='typeahead'>Kelas ID </label>
 							<div class='controls'>
 							<select name='kelas_id' class='span6' typeahead'id='selectError' data-rel='chosen'>";
-					$tampil=mysql_query("SELECT * FROM kelas ORDER BY kelas_id");
+					$tampil=mysqli_query("SELECT * FROM kelas ORDER BY kelas_id");
 						if ($data[kelas_id]==0){
 					echo "<option value=0 selected>- Pilih Kelas-</option>";}   
 
-					while($w=mysql_fetch_array($tampil)){
+					while($w=mysqli_fetch_array($tampil)){
 					if ($data[kelas_id]==$w[kelas_id]){
               echo "<option value=$w[kelas_id] selected>$w[kelas_id]</option>";}
             else{
@@ -387,8 +387,8 @@ elseif($_GET['kode']=="jurusan_update"){
 	}
 	elseif($_GET['kode']=="sekolah_update"){
 		$pesan="SELECT * FROM sekolah WHERE sekolah_id='$_GET[id]'";
-		$query=mysql_query($pesan);
-		$data=mysql_fetch_array($query);
+		$query=mysqli_query($pesan);
+		$data=mysqli_fetch_array($query);
 	echo "<div class='row-fluid sortable'>
 				<div class='box span12'>
 					<div class='box-header' data-original-title>
