@@ -31,7 +31,7 @@
 						<span><input name="username" type="text" class="textbox" id="active"></span>
 					 </div>
 					 <div>
-						<span><label>Password</label></span>
+						<span><label>Password</label></span> 
 					    <span><input name="password" type="password" class="password"></span>
 					 </div>
 					<div class="sign">
