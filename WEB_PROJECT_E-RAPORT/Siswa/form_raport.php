@@ -10,14 +10,14 @@ if (isset($_POST['proses'])and($_POST['proses']=="form2"))
 	if (!empty($_POST['nilai_angka'])and(!empty($_POST['harga'])))
 	{
 		$buah="SELECT * FROM pelajaran WHERE pelajaran_nama='$_POST[pilih_pelajaran]'";
-		$qbuah=mysql_query($buah);
-		$dbuah=mysql_fetch_array($qbuah);
+		$qbuah=mysqli_query($koneksi, $koneksi, $buah);
+		$dbuah=mysqli_fetch_array($qbuah);
 		
 		//insert ke temp_raport_detail
 		$harga_total=$_POST['nilai_angka']*$_POST['harga'];
 		$input="INSERT INTO temp_raport_detail(raport_id, pelajaran_id, pelajaran_nama, nilai_angka, nilai_huruf)
 		VALUES('RAPORT-$inc', '$dbuah[pelajaran_id]', '$_POST[pilih_pelajaran]', '$_POST[nilai_angka]', '$_POST[harga]')";
-		mysql_query($input);
+		mysqli_query($koneksi, $koneksi, $input);
 		$hal="index.php?halaman=form_raport";
 	}
 }
@@ -78,8 +78,8 @@ if (isset($_POST['proses'])and($_POST['proses']=="form2"))
     			
                   <?php
 						$pelajaran="SELECT * FROM pelajaran ORDER BY pelajaran_id ASC";
-						$qpelajaran=mysql_query($pelajaran);
-						while($dpelajaran=mysql_fetch_array($qpelajaran))
+						$qpelajaran=mysqli_query($koneksi, $pelajaran);
+						while($dpelajaran=mysqli_fetch_array($qpelajaran))
 						{
 							echo "<option>$dpelajaran[pelajaran_nama]</option>";
 						}
@@ -164,8 +164,8 @@ if (isset($_POST['proses'])and($_POST['proses']=="form2"))
 							  <tbody>
 							   <?php
 			  	$rinci="SELECT * FROM temp_raport_detail WHERE raport_id='RAPORT-$inc'";
-				$qrinci=mysql_query($rinci);
-				while($drinci=mysql_fetch_array($qrinci))
+				$qrinci=mysqli_query($koneksi, $koneksi, $rinci);
+				while($drinci=mysqli_fetch_array($qrinci))
 				{
 			  ?>
 				<tr>
@@ -181,8 +181,8 @@ if (isset($_POST['proses'])and($_POST['proses']=="form2"))
                 <td style="color:#FFF; background-color:#333; border:none" align="right">
 					<?php
 						$sum="SELECT SUM(nilai_angka)AS total FROM temp_raport_detail WHERE raport_id='RAPORT-$inc'";
-						$qsum=mysql_query($sum);
-						$dsum=mysql_fetch_array($qsum);
+						$qsum=mysqli_query($koneksi, $koneksi, $sum);
+						$dsum=mysqli_fetch_array($qsum);
 						echo digit($dsum['total']);
 					?>
                 </td>
@@ -213,12 +213,12 @@ if (isset($_POST['proses'])and($_POST['proses']=="form2"))
 								<div class="controls">
 								
 								<?php     
-$result = mysql_query("select * from siswa");  
+$result = mysqli_query($koneksi, "select * from siswa");  
 $jsArray = "var prdName = new Array();\n";  
 echo '<select style="width:200px" id="selectError" data-rel="chosen" name="pilih_siswa" onchange="document.getElementById(\'jurusan\').value = prdName[this.value]">';  
 echo '<option>-------</option>';  
-while ($row = mysql_fetch_array($result)) { 
-	$j=mysql_fetch_array(mysql_query("select * from jurusan where jurusan_id ='$row[jurusan_id]'"));
+while ($row = mysqli_fetch_array($result)) { 
+	$j=mysqli_fetch_array(mysqli_query($koneksi, "select * from jurusan where jurusan_id ='$row[jurusan_id]'"));
     echo '<option value="' . $row['siswa_nama'] . '">' . $row['siswa_nama'] . '</option>'; 
     $jsArray .= "prdName['" . $row['siswa_nama'] . "'] = '" . addslashes($j['jurusan_nama']) . "';\n"; }
 echo '</select>';?></div></div>
@@ -237,9 +237,9 @@ echo '</select>';?></div></div>
 								<label class="control-label" for="selectError3">Tahun Ajaran</label>
 								<div class="controls">
 								  <select  name="tahunajaran" id="selectError3">
-									<option>2018/2019</option>
-									<option>2019/2020</option>
-									<option>2020/2021</option>
+									<option>2014/2015</option>
+									<option>2015/2016</option>
+									<option>2016/2017</option>
 									
 								  </select>
 								</div>
