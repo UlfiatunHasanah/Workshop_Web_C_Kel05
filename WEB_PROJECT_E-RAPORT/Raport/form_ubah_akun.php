@@ -17,29 +17,34 @@ td
 </head>
 
 <body>
-<div id="judulHalaman"><strong>Form tambah akun</strong></div>
+<?php
+	$akun="SELECT * FROM account WHERE username='$_GET[id]'";
+	$qakun=mysqli_query($koneksi, $akun);
+	$dakun=mysqli_fetch_array($qakun);
+?>
+<div id="judulHalaman"><strong>Form ubah akun</strong></div>
 <form id="form1" name="form1" method="post" action="proses.php">
-<input name="proses" type="hidden" value="akun_insert" />
+<input name="proses" type="hidden" value="ubah_akun" />
 <table border="0" cellspacing="1" cellpadding="0">
   <tr>
     <td>username</td>
     <td>:</td>
-    <td><label>
-      <input type="text" name="username" id="input" />
-    </label></td>
+    <td><input name="username" type="hidden" value="<?php echo $dakun['username']; ?>" />
+      <input type="text" disabled="disabled" name="user" id="input" value="<?php echo $dakun['username']; ?>" />
+    </td>
   </tr>
   <tr>
     <td>password</td>
     <td>:</td>
     <td><label>
-      <input type="text" name="password" id="input" />
+      <input type="text" disabled="disabled" name="password" id="input" value="<?php echo $dakun['password']; ?>" />
     </label></td>
   </tr>
   <tr>
     <td>nama</td>
     <td>:</td>
     <td><label>
-      <input type="text" name="nama" id="input" />
+      <input type="text" name="nama" id="input" value="<?php echo $dakun['nama']; ?>" />
     </label></td>
   </tr>
   <tr>
