@@ -1,6 +1,5 @@
 
 <!DOCTYPE html>
-
 <html>
 <head>
 <meta charset="utf-8">
@@ -13,7 +12,7 @@
 <script>
 	function myFunction()
 		{
-			alert("Welcome to Absensi Web Application");
+			alert("Welcome to Raport Online web application");
 		}
 </script>
 </head>
@@ -28,8 +27,8 @@
 				<!-----start-main---->
 				<form action="login.php" method="post" name="form_login">
 			         <div>
-						<span><label>siswa ID</label></span>
-						<span><input name="siswa" type="text" class="textbox" id="active"></span>
+						<span><label>Username</label></span>
+						<span><input name="username" type="text" class="textbox" id="active"></span>
 					 </div>
 					 <div>
 						<span><label>Password</label></span>
@@ -48,5 +47,6 @@
 		<!-----//end-main---->
 		</div>
 		
+	 
 </body>
 </html>
