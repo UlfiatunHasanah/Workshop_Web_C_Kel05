@@ -4,23 +4,29 @@ session_start();
 require_once "library/koneksi.php";
 require_once "library/fungsi_standar.php";
 
-$siswa = $_POST["siswa"];
+$username = md5($_POST["username"]);
+
 $password = md5($_POST["password"]);
 
 
-// query untuk mendapatkan record dari siswa_id
+// query untuk mendapatkan record dari username
 
-$query = "SELECT * FROM siswa WHERE siswa_id = '$siswa'";
+$query = "SELECT * FROM account WHERE username = '$username'";
+
 $hasil = mysql_query($query);
+
 $data = mysql_fetch_array($hasil);
 
 // cek kesesuaian password
-//and($password == $data['password'])
-if (($siswa == $data['siswa_id']))
+
+if (($username == $data['username'])and($password == $data['password']))
 {
-	// menyimpan siswa_id dan level ke dalam session
-	$_SESSION['siswa'] = $data['siswa_id'];
-	$_SESSION['siswa_nama'] = $data['siswa_nama'];
+
+	// menyimpan username dan level ke dalam session
+	
+	$_SESSION['level'] = $data['level'];
+	$_SESSION['username'] = $data['username'];
+	$_SESSION['nama'] = $data['nama'];
 	
 	// tampilkan menu
 	lompat_ke("index.php");
