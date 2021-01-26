@@ -13,13 +13,13 @@ require_once "library/fungsi_standar.php";
 
 <?php
 	$raport="SELECT * FROM raport WHERE raport_id='$_GET[id]' order by inc asc";
-	$qraport=mysqli_query($raport);
-	$data=mysqli_fetch_array($qraport);
+	$qraport=mysql_query($raport);
+	$data=mysql_fetch_array($qraport);
 	
-	$a=mysqli_fetch_array(mysqli_query("SELECT * FROM siswa Where siswa_id='$data[siswa_id]'"));
-  $b=mysqli_fetch_array(mysqli_query("SELECT * FROM sekolah"));
-  $c=mysqli_fetch_array(mysqli_query("select jurusan.jurusan_nama FROM jurusan INNER JOIN kelas on jurusan.jurusan_id=kelas.jurusan_id WHERE kelas.kelas_id='$a[kelas_id]'"));
-  $d=mysqli_fetch_array(mysqli_query("SELECT * FROM kelas WHERE kelas_id='$a[kelas_id]' "));
+	$a=mysql_fetch_array(mysql_query("SELECT * FROM siswa Where siswa_id='$data[siswa_id]'"));
+  $b=mysql_fetch_array(mysql_query("SELECT * FROM sekolah"));
+  $c=mysql_fetch_array(mysql_query("select jurusan.jurusan_nama FROM jurusan INNER JOIN kelas on jurusan.jurusan_id=kelas.jurusan_id WHERE kelas.kelas_id='$a[kelas_id]'"));
+  $d=mysql_fetch_array(mysql_query("SELECT * FROM kelas WHERE kelas_id='$a[kelas_id]' "));
 ?>
 <table width='807' border='0'>
   <tr>
@@ -28,7 +28,7 @@ require_once "library/fungsi_standar.php";
     <td width='305'><?php echo "$b[sekolah_nama]"; ?></td>
     <td width='103'>Kelas / Jurusan</td>
     <td width='14'>:</td>
-    <td width='158'><?php echo "$d[kelas_id] / $c[jurusan_nama]"; ?></td>
+    <td width='158'><?php echo "$d[kelas_nama] / $c[jurusan_nama]"; ?></td>
   </tr>
   <tr>
     <td>Alamat</td>
@@ -70,9 +70,9 @@ require_once "library/fungsi_standar.php";
   </tr>
 		<?php 
 		$pesan="SELECT * FROM raport_detail WHERE raport_id='$_GET[id]' ORDER BY pelajaran_id ASC";
-		$query=mysqli_query($pesan);
+		$query=mysql_query($pesan);
 		$no=1;
-		while($row=mysqli_fetch_array($query)){
+		while($row=mysql_fetch_array($query)){
 		?>
    <tr>
         <td align="center"><?php echo "$no"; ?></td>
