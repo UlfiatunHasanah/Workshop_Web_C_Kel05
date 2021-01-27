@@ -19,7 +19,7 @@ require_once "library/fungsi_standar.php";
 	<input type=hidden name=proses id=proses value=$_GET[kode] />";
 	if($_GET['kode']=="pelajaran_update"){
 		$pesan="SELECT * FROM pelajaran WHERE inc='$_GET[id]'";
-		$query=mysqli_query($koneksi, $pesan);
+		$query=mysqli_query($connect,$pesan);
 		$data=mysqli_fetch_array($query);
 		
 		
@@ -75,7 +75,7 @@ require_once "library/fungsi_standar.php";
 
 elseif($_GET['kode']=="jurusan_update"){
 		$pesan="SELECT * FROM jurusan WHERE inc='$_GET[id]'";
-		$query=mysqli_query($koneksi, $pesan);
+		$query=mysqli_query($connect,$pesan);
 		$data=mysqli_fetch_array($query);
 		
 		
@@ -125,10 +125,10 @@ elseif($_GET['kode']=="jurusan_update"){
 	}
 
 	elseif($_GET['kode']=="kelas_update"){
-		$pesan="SELECT * FROM kelas WHERE inc='$_GET[id]'";
-		$query=mysqli_query($koneksi, $pesan);
+		$id = $_GET['id'];
+		$pesan="SELECT * FROM kelas WHERE kelas_id='$id'";
+		$query=mysqli_query($connect,$pesan);
 		$data=mysqli_fetch_array($query);
-		
 		
 		
 	echo "<div class='row-fluid sortable'>
@@ -144,7 +144,7 @@ elseif($_GET['kode']=="jurusan_update"){
 					<div class='box-content'>
 						<form class='form-horizontal'>
 						  <fieldset>
-						  <input type=hidden name=inc id=inc value=$data[inc] />
+						  <input type=hidden name=inc id=inc value='$data[kelas_id]' />
 						  
 							<div class='control-group'>
 							<label class='control-label' for='typeahead'>Kode kelas </label>
@@ -158,6 +158,27 @@ elseif($_GET['kode']=="jurusan_update"){
 							<div class='controls'>
 							
 							<input type='text' name=nmkelas class='span6 typeahead' id='typeahead' value='".$data[kelas_nama]."'/>
+							</div>
+
+							<div class='control-group'>
+							<label class='control-label' for='typeahead'>Nama Jurusan </label>
+							<div class='controls'>
+							
+							
+							<select name='nmjurusan' class='span6' typeahead'id='selectError' data-rel='chosen' value='".$data[jurusan_nama]."'>";
+					$tampil=mysqli_query($connect,"SELECT * FROM jurusan ORDER BY jurusan_nama");
+						if ($data[jurusan_id]==0){
+					echo "<option value=0 selected>- Pilih Jurusan-</option>";}   
+
+					while($w=mysqli_fetch_array($tampil)){
+					if ($data[jurusan_id]==$w[jurusan_id]){
+              echo "<option value=$w[jurusan_id] selected>$w[jurusan_nama]</option>";}
+            else{
+              echo "<option value=$w[jurusan_id]>$w[jurusan_nama]</option>";
+            }
+          }
+									
+								  echo"</select>
 							</div>
 							
 							
@@ -176,7 +197,7 @@ elseif($_GET['kode']=="jurusan_update"){
 	}
 	elseif($_GET['kode']=="siswa_update"){
 		$pesan="SELECT * FROM siswa WHERE siswa_id='$_GET[id]'";
-		$query=mysqli_query($koneksi, $pesan);
+		$query=mysqli_query($connect,$pesan);
 		$data=mysqli_fetch_array($query);
 	echo "<div class='row-fluid sortable'>
 				<div class='box span12'>
@@ -236,18 +257,18 @@ elseif($_GET['kode']=="jurusan_update"){
 							</div>
 							
 							<div class='control-group'>
-							<label class='control-label' for='typeahead'>Jurusan </label>
+							<label class='control-label' for='typeahead'>Kelas ID </label>
 							<div class='controls'>
 							<select name='jurusan' class='span6' typeahead'id='selectError' data-rel='chosen'>";
-					$tampil=mysqli_query($koneksi, "SELECT * FROM jurusan ORDER BY jurusan_id");
-						if ($data[jurusan_id]==0){
-					echo "<option value=0 selected>- Pilih Jurusan -</option>";}   
+					$tampil=mysqli_query($connect,"SELECT * FROM kelas ORDER BY kelas_id");
+						if ($data[kelas_id]==0){
+					echo "<option value=0 selected>- Pilih Kelas -</option>";}   
 
 					while($w=mysqli_fetch_array($tampil)){
-					if ($data[jurusan_id]==$w[jurusan_id]){
-              echo "<option value=$w[jurusan_id] selected>$w[jurusan_nama]</option>";}
+					if ($data[kelas_id]==$w[kelas_id]){
+              echo "<option value=$w[kelas_id] selected>$w[kelas_id]</option>";}
             else{
-              echo "<option value=$w[jurusan_id]>$w[jurusan_nama]</option>";
+              echo "<option value=$w[kelas_id]>$w[kelas_id]</option>";
             }
           }
 									
@@ -270,8 +291,8 @@ elseif($_GET['kode']=="jurusan_update"){
 			</div><!--/row-->";
 	}
 	elseif($_GET['kode']=="walikelas_update"){
-		$pesan="SELECT * FROM walikelas WHERE walikelas_id='$_GET[id]'";
-		$query=mysqli_query($koneksi, $pesan);
+		$pesan="SELECT * FROM wali_kelas WHERE inc='$_GET[id]'";
+		$query=mysqli_query($connect,$pesan);
 		$data=mysqli_fetch_array($query);
 	echo "<div class='row-fluid sortable'>
 				<div class='box span12'>
@@ -331,18 +352,18 @@ elseif($_GET['kode']=="jurusan_update"){
 							</div>
 							
 							<div class='control-group'>
-							<label class='control-label' for='typeahead'>Kelas </label>
+							<label class='control-label' for='typeahead'>Kelas ID </label>
 							<div class='controls'>
-							<select name='kelas' class='span6' typeahead'id='selectError' data-rel='chosen'>";
-					$tampil=mysqli_query($koneksi, "SELECT * FROM kelas ORDER BY kelas_id");
+							<select name='kelas_id' class='span6' typeahead'id='selectError' data-rel='chosen'>";
+					$tampil=mysqli_query($connect,"SELECT * FROM kelas ORDER BY kelas_id");
 						if ($data[kelas_id]==0){
 					echo "<option value=0 selected>- Pilih Kelas-</option>";}   
 
 					while($w=mysqli_fetch_array($tampil)){
 					if ($data[kelas_id]==$w[kelas_id]){
-              echo "<option value=$w[kelas_id] selected>$w[kelas_nama]</option>";}
+              echo "<option value=$w[kelas_id] selected>$w[kelas_id]</option>";}
             else{
-              echo "<option value=$w[kelas_id]>$w[kelas_nama]</option>";
+              echo "<option value=$w[kelas_id]>$w[kelas_id]</option>";
             }
           }
 									
@@ -366,7 +387,7 @@ elseif($_GET['kode']=="jurusan_update"){
 	}
 	elseif($_GET['kode']=="sekolah_update"){
 		$pesan="SELECT * FROM sekolah WHERE sekolah_id='$_GET[id]'";
-		$query=mysqli_query($koneksi, $pesan);
+		$query=mysqli_query($connect,$pesan);
 		$data=mysqli_fetch_array($query);
 	echo "<div class='row-fluid sortable'>
 				<div class='box span12'>
