@@ -53,12 +53,12 @@ function tanggal(){
 	return $tglLengkap;
 }
 //fungsi penambahan otomatis
-//this function created by Sigit Dwi Prasetyo
+
 function penambahan($teks1, $teks2)
 {
 	$id=0;
-	$query=mysqli_query($koneksi,$teks1);
-	$qry=mysqli_query($koneksi,$teks2);
+	$query=mysqli_query($connect,$teks1);
+	$qry=mysqli_query($connect,$teks2);
 	$inc=mysqli_fetch_array($qry);
 	$nrow=mysqli_num_rows($query);
 
@@ -71,7 +71,7 @@ function penambahan($teks1, $teks2)
 	}
 	return $id;
 }
-//this function created by Sigit Dwi Prasetyo
+
 //fungsi format angka
 function digit($data){
 		$input=$data;
@@ -113,21 +113,21 @@ else
 	return $input;
 }
 }
-//this function created by Sigit Dwi Prasetyo
+
 function ambil_data($DML)
 {
-	$query=mysqli_query($koneksi,$DML);
+	$query=mysqli_query($connect,$DML);
 	$dataArray=mysqli_fetch_array($query);
 	return $dataArray;
 }
-//this function created by Sigit Dwi Prasetyo
+
 function pencarian($tabel,$field,$cari)
 {
 	$sql="SELECT * FROM $tabel WHERE $field LIKE '%$cari%'";
-	$query=mysqli_query($koneksi,$sql);
+	$query=mysqli_query($connect,$sql);
 	return $query;
 }
-//this function created by Sigit Dwi Prasetyo
+
 function hitungDenda($thKembali, $blnKembali, $tglKembali, $thNow, $blnNow, $tglNow){
 	if ($thKembali==$thNow) 
 	{
@@ -162,7 +162,7 @@ function hitungDenda($thKembali, $blnKembali, $tglKembali, $thNow, $blnNow, $tgl
 	}
 	return $denda;
 }
-//this function created by Sigit Dwi Prasetyo
+
 function pecah_tgl($kalender)
 {
   $n=strlen($kalender);
@@ -201,7 +201,7 @@ function pecah_tgl($kalender)
   return $arrKalender;
 }
 
-//fungsi tampil created by Hendra McHen
+//fungsi tampil
 	function tampil($sql,$title,$field,$menu)
 	{
 		//awal tabel
@@ -221,7 +221,7 @@ function pecah_tgl($kalender)
 		echo "</tr>";
 		//proses ke mysqli
 		$no=1;
-		$query=mysqli_query($koneksi,$sql);
+		$query=mysqli_query($connect,$sql);
 		while($data=mysqli_fetch_array($query))
 		{
 			//baris data atau record pada tabel di basis data
