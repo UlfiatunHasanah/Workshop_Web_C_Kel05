@@ -21,7 +21,7 @@
           <th>Nama</th>
           <th>Alamat</th>
           <th>Kontak</th>
-          <th>Jurusan</th>
+          <th>Kelas ID</th>
           <th>Aksi</th>
 							  </tr>
 						  </thead>   
@@ -29,19 +29,17 @@
 							<tr>
 							<?php
 		$qtmpil_sup="select * from siswa order by inc asc";					
-		$qp_sup=mysqli_query($koneksi, $qtmpil_sup);
+		$qp_sup=mysqli_query($connect,$qtmpil_sup);
 		
 		while($row2=mysqli_fetch_array($qp_sup)){ 
-		$j=mysqli_fetch_array(mysqli_query($koneksi"select * from jurusan where jurusan_id ='$row2[jurusan_id]'"));
+		$j=mysqli_fetch_array(mysqli_query($connect,"select * from kelas where kelas_id ='$row2[kelas_id]'"));
 		?>
-		
-		
 		  
-          <td><?php echo "$row2[siswa_nama]"; ?></td>
-          <td><?php echo "$row2[siswa_alamat]"; ?></td>
+          <td><?php echo $row2['siswa_nama']; ?></td>
+          <td><?php echo $row2['siswa_alamat']; ?></td>
           
-          <td><?php echo "$row2[siswa_kontak]"; ?></td>
-          <td><?php echo "$j[jurusan_nama]"; ?></td>
+          <td><?php echo $row2['siswa_kontak']; ?></td>
+          <td><?php echo $row2['kelas_id']; ?></td>
 		  
           <td><?php echo "<a class='btn btn-info' href=index.php?halaman=form_ubah_data&kode=siswa_update&id=$row2[siswa_id]>"; ?>
           	 <i class='halflings-icon white edit'></i>
