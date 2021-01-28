@@ -41,10 +41,10 @@ td
 	$warna=$warna1;
 
 	$raport="SELECT * FROM raport WHERE raport_id='$_GET[id]' order by inc asc";
-	$qraport=mysql_query($raport);
-	$data=mysql_fetch_array($qraport);
-  $siswa = mysql_query("SELECT siswa_nama FROM siswa WHERE siswa_id='$data[siswa_id]' ");
-  $row=mysql_fetch_array($siswa);
+	$qraport=mysqli_query($connect,$raport);
+	$data=mysqli_fetch_array($qraport);
+  $siswa = mysqli_query($connect,"SELECT siswa_nama FROM siswa WHERE siswa_id='$data[siswa_id]' ");
+  $row=mysqli_fetch_array($siswa);
 ?>
 <table cellspacing="0" cellpadding="0">
 <tr>
@@ -79,9 +79,9 @@ td
       </tr>
       <?php 
 		$pesan="SELECT * FROM raport_detail WHERE raport_id='$_GET[id]' ORDER BY pelajaran_id ASC";
-		$query=mysql_query($pesan);
+		$query=mysqli_query($connect,$pesan);
 		
-		while($row=mysql_fetch_array($query)){
+		while($row=mysqli_fetch_array($query)){
 			if ($warna==$warna1){
 				$warna=$warna2;
 			}
@@ -101,8 +101,8 @@ td
         <td style="color:#FFF; background-color:#333; border:none" align="center">
         	<?php
 				$sumnilai_angka="SELECT SUM(nilai_angka) AS totalnilai_angka FROM raport_detail WHERE raport_id='$_GET[id]'";
-				$qsumnilai_angka=mysql_query($sumnilai_angka);
-				$dsumnilai_angka=mysql_fetch_array($qsumnilai_angka);
+				$qsumnilai_angka=mysqli_query($connect,$sumnilai_angka);
+				$dsumnilai_angka=mysqli_fetch_array($qsumnilai_angka);
 				echo $dsumnilai_angka['totalnilai_angka'];
 			?>
         </td>
