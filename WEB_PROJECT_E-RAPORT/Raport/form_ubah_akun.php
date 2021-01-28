@@ -18,8 +18,8 @@ td
 
 <body>
 <?php
-	$akun="SELECT * FROM account WHERE username='$_GET[id]'";
-	$qakun=mysqli_query($koneksi, $akun);
+	$akun="SELECT * FROM account WHERE id='$_GET[id]'";
+	$qakun=mysqli_query($connect,$akun);
 	$dakun=mysqli_fetch_array($qakun);
 ?>
 <div id="judulHalaman"><strong>Form ubah akun</strong></div>
@@ -29,7 +29,7 @@ td
   <tr>
     <td>username</td>
     <td>:</td>
-    <td><input name="username" type="hidden" value="<?php echo $dakun['username']; ?>" />
+    <td><input name="username" type="hidden" value="<?php echo $dakun['id']; ?>" />
       <input type="text" disabled="disabled" name="user" id="input" value="<?php echo $dakun['username']; ?>" />
     </td>
   </tr>
