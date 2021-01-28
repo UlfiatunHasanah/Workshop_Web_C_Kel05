@@ -32,9 +32,9 @@ require_once "library/fungsi_standar.php";
 							<tr>
 							<?php
 		$qtmpil_jurusan="select * from jurusan order by inc asc";						
-		$qp_brg=mysql_query($qtmpil_jurusan);
+		$qp_brg=mysqli_query($connect,$qtmpil_jurusan);
 		$no=1;
-		while($row1=mysql_fetch_array($qp_brg)){ ?>
+		while($row1=mysqli_fetch_array($qp_brg)){ ?>
 		
 		
 		<td><?php echo "$no"; ?></td>
