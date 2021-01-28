@@ -4,37 +4,47 @@ session_start();
 require_once "library/koneksi.php";
 require_once "library/fungsi_standar.php";
 
-$username = md5($_POST["username"]);
+$username = $_POST["username"];
 
-$password = md5($_POST["password"]);
+$password = $_POST["password"];
+
+var_dump($username); echo "<br>";
+var_dump($password); echo "<br>";
 
 
 // query untuk mendapatkan record dari username
 
 $query = "SELECT * FROM account WHERE username = '$username'";
 
-$hasil = mysql_query($query);
+$hasil = mysqli_query($connect,$query);
 
-$data = mysql_fetch_array($hasil);
-
+$data = mysqli_fetch_array($hasil);
+var_dump($data);
 // cek kesesuaian password
+echo mysqli_error($connect);
 
-if (($username == $data['username'])and($password == $data['password']))
+if ($username == $data['username'])
 {
 
-	// menyimpan username dan level ke dalam session
+	if ($password == $data['password']) {
+		// menyimpan username dan level ke dalam session
 	
-	$_SESSION['level'] = $data['level'];
-	$_SESSION['username'] = $data['username'];
-	$_SESSION['nama'] = $data['nama'];
+		$_SESSION['level'] = $data['level'];
+		$_SESSION['username'] = $data['username'];
+		$_SESSION['nama'] = $data['nama'];
 	
-	// tampilkan menu
-	lompat_ke("index.php");
+		// tampilkan menu
+		lompat_ke("index.php");
+	}else{
+		echo "Gagal";
+	}
 
 }
 else
 {
-	lompat_ke("form_login.php");
+	//lompat_ke("form_login.php");
+	echo mysqli_error($connect);
 }
+
 
 ?>
