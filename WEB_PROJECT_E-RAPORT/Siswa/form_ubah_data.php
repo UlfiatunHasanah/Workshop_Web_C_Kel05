@@ -20,10 +20,10 @@ require_once "library/fungsi_standar.php";
 
 	if($_GET['kode']=="siswa_update"){
 		$pesan="SELECT * FROM siswa WHERE siswa_id='$_GET[id]'";
-		$query=mysqli_query($koneksi, $pesan);
+		$query=mysqli_query($connect,$pesan);
 		$data=mysqli_fetch_array($query);
 		
-		$c=mysqli_fetch_array(mysqli_query($koneksi, "SELECT * FROM jurusan WHERE jurusan_id='$data[jurusan_id]'"));
+		$c=mysqli_fetch_array(mysqli_query($connect,"SELECT jurusan.jurusan_nama,kelas.kelas_nama FROM jurusan INNER JOIN kelas ON jurusan.jurusan_id=kelas.Jurusan_id WHERE kelas.kelas_id='$data[kelas_id]'"));
 		
   
 		
@@ -83,6 +83,12 @@ require_once "library/fungsi_standar.php";
 							
 							<input type='text' name=kontakSup class='span6 typeahead' id='typeahead' value='".$data[siswa_kontak]."'>
 							</div>
+
+							<div class='control-group'>
+							<label class='control-label' for='typeahead'>kelas </label>
+							<div class='controls'>
+							<input type='text' name=nmkelas class='span6 typeahead' id='typeahead' value='".$c[kelas_nama]."'>
+							
 							
 							<div class='control-group'>
 							<label class='control-label' for='typeahead'>Jurusan </label>
