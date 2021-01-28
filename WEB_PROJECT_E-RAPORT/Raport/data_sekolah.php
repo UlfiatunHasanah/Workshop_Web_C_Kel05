@@ -1,4 +1,5 @@
 
+
 <div class='row-fluid sortable'>		
 				<div class='box span12'>
 					<div class='box-header' data-original-title>
@@ -26,7 +27,7 @@
 							<tr>
 							<?php
 		$qtmpil_sup="select * from sekolah order by inc asc";					
-		$qp_sup=mysqli_query($koneksi, $qtmpil_sup);
+		$qp_sup=mysqli_query($connect,$qtmpil_sup);
 		
 		while($row2=mysqli_fetch_array($qp_sup)){ ?>
 		
