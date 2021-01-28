@@ -8,21 +8,21 @@ $url="";
 	function insert($nama_tabel,$values)
 	{
 		$sql="INSERT INTO ".$nama_tabel." VALUES(".$values.")";
-		mysql_query($sql);	
-		echo mysql_error();
+		mysqli_query($connect,$sql);	
+		echo mysqli_error();
 	}
 //fungsi update
 	function update($nama_tabel,$values,$kondisi)
 	{
 		$sql="UPDATE ".$nama_tabel." SET ".$values." WHERE ".$kondisi;
-		mysql_query($sql);
-		echo mysql_error();
+		mysqli_query($connect,$sql);
+		echo mysqli_error();
 	}
 //fungsi delete
 	function delete($nama_tabel,$kondisi)
 	{
 		$sql="DELETE FROM ".$nama_tabel." WHERE ".$kondisi;
-		mysql_query($sql);
+		mysqli_query($connect,$sql);
 	}
 //pilih fungsi
 	switch($proses){
@@ -97,22 +97,22 @@ $url="";
 			//insert ke tabel raport
 			$raport="INSERT INTO raport(inc, raport_id, tgl_trans, siswa_id,tahunajaran,semester,jurusan)
 			VALUES('$_POST[inc]', '$_POST[raport_id]', '$_POST[tgl_trans]','$_POST[pilih_siswa]','$_POST[tahunajaran]','$_POST[semester]','$_POST[jurusan]')";
-			mysql_query($raport);
-			echo mysql_error();
+			mysqli_query($connect,$raport);
+			echo mysqli_error();
 			//ambil data dari temp_raport_detail
 			$tmp="SELECT * FROM temp_raport_detail WHERE raport_id='$_POST[raport_id]'";
-			$qtmp=mysql_query($tmp);
-			while($dtmp=mysql_fetch_array($qtmp))
+			$qtmp=mysqli_query($connect,$tmp);
+			while($dtmp=mysqli_fetch_array($qtmp))
 			{
 				//insert ke tabel raport_detail
 				$raport_detail="INSERT INTO raport_detail(raport_id, pelajaran_id, pelajaran_nama, nilai_angka, nilai_huruf)
 				VALUES('$dtmp[raport_id]', '$dtmp[pelajaran_id]', '$dtmp[pelajaran_nama]', '$dtmp[nilai_angka]', 
 				'$dtmp[nilai_huruf]')";
-				mysql_query($raport_detail);
+				mysqli_query($connect,$raport_detail);
 				
 			}	
 			//hapus data temp_raport_detil
-			mysql_query("DELETE FROM temp_raport_detail WHERE raport_id='$_POST[raport_id]'");
+			mysqli_query($connect,"DELETE FROM temp_raport_detail WHERE raport_id='$_POST[raport_id]'");
 			$hal="raport_detail&id=$_POST[raport_id]";
 			break;
 		}
@@ -179,7 +179,7 @@ $url="";
 		case "ubah_akun":
 		{
 			$sql="UPDATE account SET password='$_POST[password]', nama='$_POST[nama]', level='$_POST[level]' WHERE username='$_POST[username]'";
-			mysql_query($sql);
+			mysqli_query($connect,$sql);
 			$hal="data_akun";
 			break;
 		}
@@ -232,10 +232,10 @@ switch($hapus){
 	{
 		if ($_GET['status']=="satu"){
 			$pesan="DELETE FROM temp_raport_detail WHERE pelajaran_id='$_GET[id]'";
-			mysql_query($pesan);
+			mysqli_query($connect,$pesan);
 		}else{
 			$pesan="DELETE FROM temp_raport_detail WHERE raport_id='$_GET[id]'";
-			mysql_query($pesan);
+			mysqli_query($connect,$pesan);
 		}
 		$url="transaksi";
 		$hal="index.php?halaman=form_raport";
@@ -245,7 +245,7 @@ switch($hapus){
 	case "hapus_akun":
 	{
 		$sql="DELETE FROM account WHERE username='$_GET[id]'";
-		mysql_query($sql);
+		mysqli_query($connect,$sql);
 		$hal="data_akun";
 		break;
 	}
