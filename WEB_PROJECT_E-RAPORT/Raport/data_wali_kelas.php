@@ -29,10 +29,10 @@
 							<tr>
 							<?php
 		$qtmpil_sup="select * from wali_kelas order by inc asc";					
-		$qp_sup=mysql_query($qtmpil_sup);
+		$qp_sup=mysqli_query($connect,$qtmpil_sup);
 		
-		while($row2=mysql_fetch_array($qp_sup)){ 
-		$j=mysql_fetch_array(mysql_query("select * from kelas where kelas_id ='$row2[kelas_id]'"));
+		while($row2=mysqli_fetch_array($qp_sup)){ 
+		$j=mysqli_fetch_array(mysqli_query($connect,"select * from kelas where kelas_id ='$row2[kelas_id]'"));
 		?>
 		
 		
