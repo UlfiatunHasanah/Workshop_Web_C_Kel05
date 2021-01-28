@@ -14,9 +14,9 @@
 <div class='row-fluid sortable'>		
 				<div class='box span12'>
 					<div class='box-header' data-original-title>
-						<h2><i class='halflings-icon user'></i><span class='break'></span>Data Raport</h2>
+						<h2><i class='halflings-icon user'></i><span class='break'></span>Data pelajaran Masuk</h2>
 						<div class='box-icon'>
-							
+							<a href='#' class='btn-setting'><i class='halflings-icon wrench'></i></a>
 							<a href='#' class='btn-minimize'><i class='halflings-icon chevron-up'></i></a>
 							<a href='#' class='btn-close'><i class='halflings-icon remove'></i></a>
 						</div>
@@ -40,9 +40,9 @@
 							<tr>
 							<?php
 		$pesan="SELECT * FROM raport where kelas='$_GET[kelas]' ORDER BY inc DESC LIMIT 25";
-		$query=mysql_query($pesan);
+		$query=mysqli_query($connect,$pesan);
 		$no=1;
-		while($row=mysql_fetch_array($query)){ ?>
+		while($row=mysqli_fetch_array($query)){ ?>
 		
 		
 		<td><?php echo "$no"; ?></td>
@@ -58,14 +58,14 @@
 <td>
 					<?php
 						$sum="SELECT SUM(nilai_angka)AS total FROM raport_detail WHERE raport_id='$row[raport_id]'";
-						$qsum=mysql_query($sum);
-						$dsum=mysql_fetch_array($qsum);
+						$qsum=mysqli_query($connect,$sum);
+						$dsum=mysqli_fetch_array($qsum);
 						echo digit($dsum['total']);
 					?>
                 </td>	
-				<td><?php echo "<a class='btn btn-success' href='raport_detail2.php?id=$row[raport_id]'><i class='halflings-icon white picture'></i></a> ";?>
-	<?php echo "<a class='btn btn-success' href='raport_detail2_f.php?id=$row[raport_id]'><i class='halflings-icon white print'></i></a> ";?>
-	</td>	
+				<td><?php echo "<a class='btn btn-success' href='raport_detail2.php?id=$row[raport_id]'><i class='halflings-icon white print'></i></a> ";?>
+	<?php echo "<a class='btn btn-danger' href='raport_detail2_f.php?id=$row[raport_id]'><i class='halflings-icon white picture'></i></a> ";?>
+	</td>
 								
 							</tr>
 							<?php $no++;}?>
