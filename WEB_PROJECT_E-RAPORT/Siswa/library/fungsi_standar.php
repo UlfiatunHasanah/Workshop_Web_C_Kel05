@@ -1,4 +1,5 @@
 <?php
+
 require_once "library/koneksi.php";
 //fungsi pindah halaman
 function lompat_ke($page)
@@ -52,14 +53,14 @@ function tanggal(){
 	return $tglLengkap;
 }
 //fungsi penambahan otomatis
-//this function created by Sigit Dwi Prasetyo
+
 function penambahan($teks1, $teks2)
 {
 	$id=0;
-	$query=mysql_query($koneksi, $teks1);
-	$qry=mysql_query($teks2);
-	$inc=mysql_fetch_array($qry);
-	$nrow=mysql_num_rows($query);
+	$query=mysqli_query($connect,$teks1);
+	$qry=mysqli_query($connect,$teks2);
+	$inc=mysqli_fetch_array($qry);
+	$nrow=mysqli_num_rows($query);
 
 	if ($nrow==0){
 		$id=1;	
@@ -70,7 +71,7 @@ function penambahan($teks1, $teks2)
 	}
 	return $id;
 }
-//this function created by Sigit Dwi Prasetyo
+
 //fungsi format angka
 function digit($data){
 		$input=$data;
@@ -112,21 +113,21 @@ else
 	return $input;
 }
 }
-//this function created by Sigit Dwi Prasetyo
+
 function ambil_data($DML)
 {
-	$query=mysql_query($DML);
-	$dataArray=mysql_fetch_array($query);
+	$query=mysqli_query($connect,$DML);
+	$dataArray=mysqli_fetch_array($query);
 	return $dataArray;
 }
-//this function created by Sigit Dwi Prasetyo
+
 function pencarian($tabel,$field,$cari)
 {
 	$sql="SELECT * FROM $tabel WHERE $field LIKE '%$cari%'";
-	$query=mysql_query($sql);
+	$query=mysqli_query($connect,$sql);
 	return $query;
 }
-//this function created by Sigit Dwi Prasetyo
+
 function hitungDenda($thKembali, $blnKembali, $tglKembali, $thNow, $blnNow, $tglNow){
 	if ($thKembali==$thNow) 
 	{
@@ -200,7 +201,7 @@ function pecah_tgl($kalender)
   return $arrKalender;
 }
 
-//fungsi tampil created by Hendra McHen
+//fungsi tampil
 	function tampil($sql,$title,$field,$menu)
 	{
 		//awal tabel
@@ -218,10 +219,10 @@ function pecah_tgl($kalender)
 			echo "<td colspan=2>Menu</td>";
 		}
 		echo "</tr>";
-		//proses ke mysql
+		//proses ke mysqli
 		$no=1;
-		$query=mysql_query($sql);
-		while($data=mysql_fetch_array($query))
+		$query=mysqli_query($connect,$sql);
+		while($data=mysqli_fetch_array($query))
 		{
 			//baris data atau record pada tabel di basis data
 			echo "<tr>";
