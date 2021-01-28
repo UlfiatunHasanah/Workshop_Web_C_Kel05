@@ -28,7 +28,7 @@ require_once "library/fungsi_standar.php";
     <td width='305'><?php echo "$b[sekolah_nama]"; ?></td>
     <td width='103'>Kelas / Jurusan</td>
     <td width='14'>:</td>
-    <td width='158'><?php echo "$d[kelas_id] / $c[jurusan_nama]"; ?></td>
+    <td width='158'><?php echo "$d[kelas_nama] / $c[jurusan_nama]"; ?></td>
   </tr>
   <tr>
     <td>Alamat</td>
