@@ -69,6 +69,7 @@ td
 	}
 	else
 	{
-		echo "anda tidak berhak meng-akses halaman ini !";
+		//echo "anda tidak berhak meng-akses halaman ini !";
+    echo mysqli_error($connect);
 	}
 ?>
