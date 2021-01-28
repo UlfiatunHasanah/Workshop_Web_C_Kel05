@@ -14,22 +14,23 @@ require_once "library/fungsi_standar.php";
 
 <?php
 	$raport="SELECT * FROM raport WHERE raport_id='$_GET[id]' order by inc asc";
-	$qraport=mysqli_query($koneksi, $raport);
+	$qraport=mysqli_query($connect,$raport);
 	$data=mysqli_fetch_array($qraport);
-	
-	$a=mysqli_fetch_array(mysqli_query($koneksi, "SELECT * FROM siswa Where siswa_id='$data[siswa_id]'"));
-	$b=mysqli_fetch_array(mysqli_query($koneksi, "SELECT * FROM sekolah"));
-	$c=mysqli_fetch_array(mysqli_query($koneksi, "select jurusan.jurusan_nama FROM jurusan INNER JOIN kelas on jurusan.jurusan_id=kelas.jurusan_id WHERE kelas.kelas_id='$a[kelas_id]'"));
-  $d=mysqli_fetch_array(mysqli_query($koneksi, "SELECT * FROM kelas WHERE kelas_id='$a[kelas_id]' "));
+	$siswa = mysqli_query($connect,"SELECT * FROM siswa Where siswa_id='$data[siswa_id]'");
+	$a=mysqli_fetch_array($siswa);
+  $sekolah = mysqli_query($connect,"SELECT * FROM sekolah");
+	$b=mysqli_fetch_array($sekolah);
+	$c=mysqli_fetch_array(mysqli_query($connect,"select jurusan.jurusan_nama FROM jurusan INNER JOIN kelas on jurusan.jurusan_id=kelas.jurusan_id WHERE kelas.kelas_id='$a[kelas_id]'"));
+  $d=mysqli_fetch_array(mysqli_query($connect,"SELECT * FROM kelas WHERE kelas_id='$a[kelas_id]' "));
 ?>
 <table width='807' border='0'>
   <tr>
     <td width='179'>Nama Sekolah</td>
     <td width='8'>:</td>
     <td width='305'><?php echo "$b[sekolah_nama]"; ?></td>
-    <td width='103'>Kelas /Jurusan</td>
+    <td width='103'>Kelas </td>
     <td width='14'>:</td>
-    <td width='158'><?php echo "$d[kelas_nama] / $c[jurusan_nama]"; ?></td>
+    <td width='158'><?php echo "$d[kelas_id] / $c[jurusan_nama]"; ?></td>
   </tr>
   <tr>
     <td>Alamat</td>
@@ -71,7 +72,7 @@ require_once "library/fungsi_standar.php";
   </tr>
 		<?php 
 		$pesan="SELECT * FROM raport_detail WHERE raport_id='$_GET[id]' ORDER BY pelajaran_id ASC";
-		$query=mysqli_query($pesan);
+		$query=mysqli_query($connect,$pesan);
 		$no=1;
 		while($row=mysqli_fetch_array($query)){
 		?>
@@ -258,8 +259,6 @@ require_once "library/fungsi_standar.php";
     <td width='234' align='center'>Mengetahui</td>
     <td width='258'>&nbsp;</td>
     <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
   </tr>
   <tr>
     <td align='center'>Orang Tua/ Wali,</td>
@@ -280,7 +279,7 @@ require_once "library/fungsi_standar.php";
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td colspan='3' >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NIP.</td>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NIP.</td>
   </tr>
 </table>
 
