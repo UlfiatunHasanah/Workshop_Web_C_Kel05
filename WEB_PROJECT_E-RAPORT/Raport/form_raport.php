@@ -1,23 +1,23 @@
 <?php
 require_once "library/koneksi.php";
 require_once "library/fungsi_standar.php";
-
-$a="SELECT * FROM raport";
-$b="SELECT inc FROM raport ORDER BY inc DESC LIMIT 1";
-$inc=penambahan($a, $b);
+$getId = mysqli_query($connect, "SELECT count(inc) as id FROM raport");
+		$data = mysqli_fetch_array($getId);
+		$lastId = $data['id'];
+		$inc = $lastId + 1;
 if (isset($_POST['proses'])and($_POST['proses']=="form2"))
 {
 	if (!empty($_POST['nilai_angka'])and(!empty($_POST['harga'])))
 	{
 		$buah="SELECT * FROM pelajaran WHERE pelajaran_nama='$_POST[pilih_pelajaran]'";
-		$qbuah=mysqli_query($koneksi, $buah);
+		$qbuah=mysqli_query($connect,$buah);
 		$dbuah=mysqli_fetch_array($qbuah);
 		
 		//insert ke temp_raport_detail
 		$harga_total=$_POST['nilai_angka']*$_POST['harga'];
 		$input="INSERT INTO temp_raport_detail(raport_id, pelajaran_id, pelajaran_nama, nilai_angka, nilai_huruf)
 		VALUES('RAPORT-$inc', '$dbuah[pelajaran_id]', '$_POST[pilih_pelajaran]', '$_POST[nilai_angka]', '$_POST[harga]')";
-		mysqli_query($koneksi, $input);
+		mysqli_query($connect,$input);
 		$hal="index.php?halaman=form_raport";
 	}
 }
@@ -41,7 +41,7 @@ if (isset($_POST['proses'])and($_POST['proses']=="form2"))
 					<div class="box-header">
 						<h2><i class="halflings-icon bell"></i><span class="break"></span>Pilih Mata Pelajaran</h2>
 						<div class="box-icon">
-							<a href="#" class="btn-setting"><i class="halflings-icon wrench"></i></a>
+							
 							<a href="#" class="btn-minimize"><i class="halflings-icon chevron-up"></i></a>
 							<a href="#" class="btn-close"><i class="halflings-icon remove"></i></a>
 						</div>
@@ -74,11 +74,13 @@ if (isset($_POST['proses'])and($_POST['proses']=="form2"))
   			</tr>
   			<tr>
     			<td>
-				<select name="pilih_pelajaran" data-placeholder="" id="selectError2" data-rel="chosen">
+				<select name="pilih_pelajaran" data-placeholder="" id="selectError2" data-rel="chosen" >
+					<div class="scroll"></div>
+
     			
                   <?php
 						$pelajaran="SELECT * FROM pelajaran ORDER BY pelajaran_id ASC";
-						$qpelajaran=mysqli_query($koneksi, $pelajaran);
+						$qpelajaran=mysqli_query($connect,$pelajaran);
 						while($dpelajaran=mysqli_fetch_array($qpelajaran))
 						{
 							echo "<option>$dpelajaran[pelajaran_nama]</option>";
@@ -135,7 +137,7 @@ if (isset($_POST['proses'])and($_POST['proses']=="form2"))
 					<div class="box-header" data-original-title>
 						<h2><i class="halflings-icon edit"></i><span class="break"></span>Form Elements</h2>
 						<div class="box-icon">
-							<a href="#" class="btn-setting"><i class="halflings-icon wrench"></i></a>
+							
 							<a href="#" class="btn-minimize"><i class="halflings-icon chevron-up"></i></a>
 							<a href="#" class="btn-close"><i class="halflings-icon remove"></i></a>
 						</div>
@@ -164,7 +166,7 @@ if (isset($_POST['proses'])and($_POST['proses']=="form2"))
 							  <tbody>
 							   <?php
 			  	$rinci="SELECT * FROM temp_raport_detail WHERE raport_id='RAPORT-$inc'";
-				$qrinci=mysqli_query($koneksi, $rinci);
+				$qrinci=mysqli_query($connect,$rinci);
 				while($drinci=mysqli_fetch_array($qrinci))
 				{
 			  ?>
@@ -181,7 +183,7 @@ if (isset($_POST['proses'])and($_POST['proses']=="form2"))
                 <td style="color:#FFF; background-color:#333; border:none" align="right">
 					<?php
 						$sum="SELECT SUM(nilai_angka)AS total FROM temp_raport_detail WHERE raport_id='RAPORT-$inc'";
-						$qsum=mysqli_query($koneksi, $sum);
+						$qsum=mysqli_query($connect,$sum);
 						$dsum=mysqli_fetch_array($qsum);
 						echo digit($dsum['total']);
 					?>
@@ -213,14 +215,14 @@ if (isset($_POST['proses'])and($_POST['proses']=="form2"))
 								<div class="controls">
 								
 								<?php     
-$result = mysqli_query($koneksi, "select * from siswa");  
+$result = mysqli_query($connect,"select * from siswa");  
 $jsArray = "var prdName = new Array();\n";  
 echo '<select style="width:200px" id="selectError" data-rel="chosen" name="pilih_siswa" onchange="document.getElementById(\'jurusan\').value = prdName[this.value]">';  
 echo '<option>-------</option>';  
 while ($row = mysqli_fetch_array($result)) { 
-	$j=mysqli_fetch_array(mysqli_query($koneksi, "select jurusan.jurusan_nama FROM jurusan INNER JOIN kelas on jurusan.jurusan_id=kelas.jurusan_id WHERE kelas.kelas_id='$row[kelas_id]'"));
-    echo '<option value="' . $row['siswa_nama'] . '">' . $row['siswa_nama'] . '</option>'; 
-    $jsArray .= "prdName['" . $row['siswa_nama'] . "'] = '" . addslashes($j['jurusan_nama']) . "';\n"; }
+	$j=mysqli_fetch_array(mysqli_query($connect,"select jurusan.jurusan_nama FROM jurusan INNER JOIN kelas on jurusan.jurusan_id=kelas.jurusan_id WHERE kelas.kelas_id='$row[kelas_id]'"));
+    echo '<option value="' . $row['siswa_id'] . '">' . $row['siswa_nama'] . '</option>'; 
+    $jsArray .= "prdName['" . $row['siswa_id'] . "'] = '" . addslashes($j['jurusan_nama']) . "';\n"; }
 echo '</select>';?></div></div>
 
 <div class="control-group">
@@ -237,9 +239,9 @@ echo '</select>';?></div></div>
 								<label class="control-label" for="selectError3">Tahun Ajaran</label>
 								<div class="controls">
 								  <select  name="tahunajaran" id="selectError3">
-									<option>2014/2015</option>
-									<option>2015/2016</option>
-									<option>2016/2017</option>
+									<option>2018/2019</option>
+									<option>2019/2020</option>
+									<option>2020/2021</option>
 									
 								  </select>
 								</div>
@@ -250,7 +252,7 @@ echo '</select>';?></div></div>
 								<div class="controls">
 								  <select  name="kelas" id="selectError3">
 								  	<?php  
-										$kelas = mysqli_query($koneksi, "SELECT * FROM kelas");
+										$kelas = mysqli_query($connect,"SELECT * FROM kelas");
 										while ($row = mysqli_fetch_array($kelas)) {
 									?>
 									<option value="<?php echo $row['kelas_id'] ?>"><?php echo $row['kelas_nama']; ?></option>
