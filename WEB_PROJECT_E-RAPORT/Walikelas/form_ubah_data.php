@@ -20,11 +20,10 @@ require_once "library/fungsi_standar.php";
 
 	if($_GET['kode']=="walikelas_update"){
 		$pesan="SELECT * FROM wali_kelas WHERE walikelas_id='$_GET[id]'";
-		$query=mysqli_query($koneksi, $pesan);
+		$query=mysqli_query($connect,$pesan);
 		$data=mysqli_fetch_array($query);
 		
-		$c=mysqli_fetch_array(mysqli_query($koneksi, "SELECT * FROM kelas WHERE kelas_id='$data[kelas_id]'"));
-		
+		$c=mysqli_fetch_array(mysqli_query($connect,"SELECT * FROM kelas WHERE kelas_id='$data[kelas_id]'"));
   
 		
 	echo "<div class='row-fluid sortable'>
