@@ -11,8 +11,8 @@ $password = md5($_POST["password"]);
 // query untuk mendapatkan record dari siswa_id
 
 $query = "SELECT * FROM siswa WHERE siswa_id = '$siswa'";
-$hasil = mysql_query($query);
-$data = mysql_fetch_array($hasil);
+$hasil = mysqli_query($connect,$query);
+$data = mysqli_fetch_array($hasil);
 
 // cek kesesuaian password
 //and($password == $data['password'])
