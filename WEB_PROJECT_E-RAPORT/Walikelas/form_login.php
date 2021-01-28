@@ -39,7 +39,6 @@
 						<div class="submit">
 						  <input type="submit" onclick="myFunction()" value="LOGIN" >
 						</div>
-
 							<div class="clear"> </div>
 					</div>
 					</form>
