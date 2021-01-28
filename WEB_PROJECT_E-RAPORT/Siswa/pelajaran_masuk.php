@@ -35,13 +35,13 @@
 							<?php
 							$kid = $_SESSION['siswa'];
 		$pesan="SELECT siswa.siswa_id,siswa.siswa_nama,kelas.kelas_nama,raport.raport_id,raport.tahunajaran,raport.semester FROM siswa INNER JOIN kelas ON siswa.kelas_id=kelas.kelas_id INNER JOIN raport ON siswa.siswa_id=raport.siswa_id WHERE siswa.siswa_id = '$kid'";
-		$query=mysqli_query($koneksi,$pesan);
+		$query=mysqli_query($connect,$pesan);
 		$no=1;
 		while($row=mysqli_fetch_array($query)){ ?>
 		
 		
 		<td><?php echo "$no"; ?></td>
-           <td><a href="#" onclick="javascript:wincal=window.open('raport_detail.php?id=<?php echo $row['raport_id']; ?>','Lihat 		Data','width=790,height=400,scrollbars=1');">
+           <td><a>
     <?php echo $row['raport_id']; ?></a>
     </td>
     <td><?php echo "$row[siswa_nama]"; ?></td>		 
@@ -52,13 +52,13 @@
 <td>
 					<?php
 						$sum="SELECT SUM(nilai_angka)AS total FROM raport_detail WHERE raport_id='$row[raport_id]'";
-						$qsum=mysqli_query($koneksi, $sum);
+						$qsum=mysqli_query($connect,$sum);
 						$dsum=mysqli_fetch_array($qsum);
 						echo digit($dsum['total']);
 					?>
                 </td>
-	<td><?php echo "<a class='btn btn-success' href='raport_detail2.php?id=$row[raport_id]'><i class='halflings-icon white print'></i></a> ";?>
-	<?php echo "<a class='btn btn-danger' href='raport_detail2_f.php?id=$row[raport_id]'><i class='halflings-icon white picture'></i></a> ";?>
+	<td><?php echo "<a class='btn btn-success' href='raport_detail2.php?id=$row[raport_id]'><i class='halflings-icon white picture'></i></a> ";?>
+	<?php echo "<a class='btn btn-success' href='raport_detail2_f.php?id=$row[raport_id]'><i class='halflings-icon white print'></i></a> ";?>
 	</td>		
 							</tr>
 							<?php $no++;}?>
