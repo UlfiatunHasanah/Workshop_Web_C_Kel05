@@ -40,9 +40,9 @@
 							<tr>
 							<?php
 		$pesan="SELECT * FROM raport where kelas='$_GET[kelas]' ORDER BY inc DESC LIMIT 25";
-		$query=mysql_query($pesan);
+		$query=mysqli_query($connect,$pesan);
 		$no=1;
-		while($row=mysql_fetch_array($query)){ ?>
+		while($row=mysqli_fetch_array($query)){ ?>
 		
 		
 		<td><?php echo "$no"; ?></td>
@@ -58,8 +58,8 @@
 <td>
 					<?php
 						$sum="SELECT SUM(nilai_angka)AS total FROM raport_detail WHERE raport_id='$row[raport_id]'";
-						$qsum=mysql_query($sum);
-						$dsum=mysql_fetch_array($qsum);
+						$qsum=mysqli_query($connect,$sum);
+						$dsum=mysqli_fetch_array($qsum);
 						echo digit($dsum['total']);
 					?>
                 </td>	
