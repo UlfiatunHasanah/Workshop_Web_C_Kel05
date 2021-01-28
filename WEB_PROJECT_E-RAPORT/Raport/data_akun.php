@@ -34,7 +34,7 @@ if ($_SESSION['level'] == "admin")
 							<tr>
 							<?php
 		$akun="SELECT * FROM account";
-	$qakun=mysqli_query($koneksi,$akun);
+	$qakun=mysqli_query($connect,$akun);
   while($dakun=mysqli_fetch_array($qakun))
   { ?>
 		
@@ -47,11 +47,11 @@ if ($_SESSION['level'] == "admin")
     <td>$dakun[level]</td>";
 		  ?>
 		  
-          <td><?php echo "<a class='btn btn-info' href='index.php?halaman=form_ubah_akun&id=$dakun[username]'>"; ?>
+          <td><?php echo "<a class='btn btn-info' href='index.php?halaman=form_ubah_akun&id=$dakun[id]'>"; ?>
           	 <i class='halflings-icon white edit'></i>
 			 <?php echo "</a> ";
 			 
-			 echo "<a class='btn btn-danger' href='proses.php?proses=hapus_akun&id=$dakun[username]'>"; ?>
+			 echo "<a class='btn btn-danger' href='proses.php?proses=hapus_akun&id=$dakun[id]'>"; ?>
           	 <i class='halflings-icon white trash'></i>
 			 <?php echo "</a>";
 
